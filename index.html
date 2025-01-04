@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+    /* Color Palette Styles */
+    body {
+        background-color: #F5F5F5; /* Background Color */
+        color: #333333; /* Primary Text Color */
+    }
+
+    .navbar {
+        background-color: #dcdfe4; /* Primary Color */
+    }
+    
+    .nav-link {
+        color: #FFC300; /* Secondary Color */
+        margin: 0 15px; /* Add space between navbar items */
+    }
+
+    .nav-link:hover {
+        color: #FF5733; /* Accent Color */
+    }
+
+    .btn-custom {
+        background-color: #0047AB; /* Primary Color */
+        color: #FFF; /* White for better contrast */
+    }
+
+    .btn-custom:hover {
+        background-color: #FF5733; /* Accent Color */
+    }
+
+    .carousel-caption h5 {
+        color: #FFC300; /* Secondary Color */
+    }
+
+    .footer-section h4 {
+        color: #0047AB; /* Primary Color */
+    }
+
+    .footer-section ul li a {
+        color: #666666; /* Secondary Text Color */
+    }
+
+    .footer-section ul li a:hover {
+        color: #FF5733; /* Accent Color */
+    }
+
+    .submenu li a {
+        color: #0047AB; /* Primary Color */
+    }
+
+    .submenu li a:hover {
+        background-color: #FFC300; /* Secondary Color */
+    }
+
+    .border {
+        border-color: #DDDDDD; /* Border Color */
+    }
+
+    .navbar-nav {
+        width: 100%;
+        justify-content: right;
+    }
+
+    .center-nav-item {
+        margin: 0 auto;
+        margin-left: 150px;
+        margin-right: 150px;
+        background-color: #242b2b;
+    }
+
+    .nav-item .submenu {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        box-shadow: 0 8px 16px rgba(4, 206, 246, 0.932);
+        z-index: 1000;
+        border-right: 30px;
+    }
+
+    .nav-item:hover .submenu {
+        display: inline-block;
+    }
+
+    .submenu li {
+        list-style: none;
+    }
+
+    .submenu li a {
+        color: #010c0c;
+        text-decoration: none;
+        display: inline-block;
+        padding: 10px 20px;
+    }
+
+    .submenu li a:hover {
+        background-color: #1598e9;
+    }
+
+    .nav-item {
+        position: relative;
+    }
+
+    .navbar-nav > .nav-item:last-child {
+        margin-right: 60px; /* Remove margin from the last item */
+    }
+
+    .btn-custom {
+        border-radius: 20px; /* Adjust the value as needed */
+        background-color: #edf0f3; /* Add any other styling you need */
+        color: rgb(16, 16, 16);
+        padding: 10px 20px;
+        margin: 5px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .btn-custom:hover {
+        background-color: #408CFD;
+        color: white;
+    }
+
+    body {
+        padding-top: 70px; /* Adjust this based on the height of your navbar */
+    }
+
+    .carousel {
+        margin: 20px auto;
+        max-width: 2000px;
+        border-radius: 0px;
+        overflow: hidden;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .carousel-inner img {
+        height: 650px;
+        object-fit: cover;
+        overflow: hidden;
+        width: 50%;
+    }
+
+    .carousel-caption {
+        background: rgba(0, 0, 0, 0.5);
+        padding: 20px;
+        border-radius: 20px;
+        display: flex;
+        position:absolute;
+    }
+
+    .carousel-caption h5 {
+        color: #ffffff;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    .carousel-caption p {
+        color: #dddddd;
+        font-size: 16px;
+    }
+
+    .carousel-indicators button {
+        width: 12px;
+        height: 12px;
+        background-color: #777777;
+    }
+
+    .carousel-indicators .active {
+        background-color: #ffffff;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: rgba(0, 0, 0, 0.5);
+        border-radius: 50%;
+        background-image: none;
+    }
+
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 50px;
+        background: none;
+        outline: none;
+        border: none;
+    }
+
+    .carousel-control-prev-icon::after,
+    .carousel-control-next-icon::after {
+        background-image: none;
+        background-color: transparent;
+    }
+
+    footer {
+        background-color: rgb(216, 210, 210);
+        color: rgb(88, 87, 87);
+        padding: 50px;
+        padding-bottom: 0px;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .footer-section {
+        margin-bottom: 20px;
+        flex: 1 1 200px; /* Flex-grow, flex-shrink, and flex-basis */
+        min-width: 200px; /* Ensures a minimum width for responsiveness */
+    }
+
+    .footer-section h4 {
+        margin-bottom: 15px;
+        margin: right 30px;
+    }
+
+    .footer-section ul {
+        list-style-type: none;
+        padding: 0;
+    }
+
+    .footer-section ul li {
+        margin: 5px 0;
+    }
+
+    .footer-section ul li a {
+        color: rgb(47, 45, 45);
+        text-decoration: none;
+    }
+
+    .footer-section ul li a:hover {
+        text-decoration: underline;
+    }
+
+    .map {
+        margin: 10px;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    footer {
+        width: 100%;
+        position: relative;
+        bottom: 0;
+    }
+
+    .map-container iframe {
+        width: 100%;
+        height: 200%;
+        border: 0;
+    }
+
+
+
+    body.dark-mode {
+        background-color: #333333;
+        color: #FFFFFF;
+    }
+    
+    nav.dark-mode {
+        background-color: #444444;
+        color: #FFFFFF;
+    }
+    
+    .nav-link.dark-mode,
+    .btn-custom.dark-mode {
+        color: #FFFFFF;
+    }
+    
+
+    /* Modal Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 9999; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 400px;
+  }
+  
+  /* Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  /* Style for Login/Signup buttons */
+  #loginBtn,
+  #signupBtn {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  #loginBtn:hover,
+  #signupBtn:hover {
+    background-color: #0056b3;
+  }
+
+  .modal-content {
+    background-image: url('img/pexels-photo.jpeg');
+    background-size: cover; 
+    background-position: center; 
+  }
+</style>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <a class="navbar-brand" href="#">
+        <img src="img/msul.jpg" alt="Logo" style="height: 60px;">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home</a>
+                <ul class="submenu">
+                    <li><a href="#">Submenu</a></li>
+                    <li><a href="#">Submenu</a></li>
+                    <li><a href="#">Submenu</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+                <ul class="submenu">
+                    <li><a href="#">Submenu</a></li>
+                    <li><a href="#">Submenu</a></li>
+                    <li><a href="#">Submenu</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">My Project</a>
+                <ul class="submenu">
+                    <li><a href="shademaster/homepage.html"><img src="img/pej.png" alt="">Winter Project</a></li>
+                    <li><a href="tic-tac-toe.html">         <img src="img/toe.png" alt="">Tictactoe</a></li>
+                    <li><a href="#"><img src="" alt="">Submenu</a></li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="">Social</a>
+                <ul class="submenu">
+                    <li><a href="https://www.facebook.com/clozal.tamang?mibextid=ZbWKwL"><img src="img/face.png" alt=""> Facebook</a></li>
+                    <li><a href="https://www.instagram.com/your_username"><img src="img/instag.png" alt=""> Instagram</a></li>
+                </ul>
+            </li>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="#">Blog</a>
+                <ul class="submenu">
+                    <li><a href="#">Submenu</a></li>
+                    <li><a href="#">Submenu</a></li>
+                    <li><a href="#">Submenu</a></li>
+                </ul>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link btn-custom" href="reglog.html">Login/signup</a>
+            </li>
+        </ul>
+    </div>
+<!-- Other header content -->
+<div id="dark-mode-toggle">
+    <img src="img/bulbs.png" alt="Sun Icon" id="sun-icon">
+    <img src="img/lightmode.png" alt="Moon Icon" id="moon-icon" style="display: none;">
+</div>
+
+</nav>
+
+<!-- Login/Signup Modal -->
+<div id="loginSignupModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Login or Sign Up</h2>
+      <a class="nav-link btn-custom" href="reglog.html">Login</a>
+      <a class="nav-link btn-custom" href="reglog.html">signup</a>
+    </div>
+  </div>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="3000">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img class="d-block w-100" src="img/lakpa.webp" alt="First slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Network Security</h5>
+                <p>Skilled in securing network infrastructure, preventing unauthorized access, and ensuring data integrity and confidentiality.</p>.</p>
+                <a href="hi.html">
+                    <button type="button" class="btn btn-primary">Hire Me</button>
+                </a>
+                
+                
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="img/aka.webp" alt="Second slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Cloud Computing</h5>
+                <p>Experienced in leveraging cloud platforms to optimize performance, ensure data security, and manage scalable solutions.</p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img class="d-block w-100" src="img/IT.jpg" alt="Third slide">
+            <div class="carousel-caption d-none d-md-block">
+                <h5>Skills</h5>
+                <p>.</p>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+
+
+<div class="map-container">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d886.4307547067164!2d88.59488687249389!3d27.29055201302582!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e6a57e268e2b65%3A0xcaf70902ae3c70a4!2sJalipool%20bridge!5e0!3m2!1sen!2sin!4v1716539582918!5m2!1sen!2sin" 
+        width="1140" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+<footer>
+    <div class="footer-section">
+        <h4>Home</h4>
+        <ul>
+            <li><a href="#">Details</a></li>
+            <li><a href="#">Content</a></li>
+            <li><a href="#">Careers</a></li>
+        </ul>
+    </div>
+    <div class="footer-section">
+        <h4>About</h4>
+        <ul>
+            <li><a href="#">Career</a></li>
+            <li><a href="#">Learning</a></li>
+            <li><a href="#">Education</a></li>
+        </ul>
+    </div>
+    <div class="footer-section">
+        <h4>My Project</h4>
+        <ul class="submenu">
+            <li><a href="shademaster/homepage.html"><img src="img/pej.png" alt="">Winter Project</a></li>
+            <li><a href="tic-tac-toe.html"><img src="img/toe.png" alt="">Tictactoe</a></li>
+            <li><a href="#"><img src="" alt="">Submenu</a></li>
+        </ul>
+    </div>
+    <div class="footer-section">
+        <h4>Social</h4>
+        <ul class="submenu">
+            <li><a href="https://www.facebook.com/clozal.tamang?mibextid=ZbWKwL"><img src="img/face.png" alt=""> Facebook</a></li>
+            <li><a href="https://www.instagram.com/your_username"><img src="img/instag.png" alt=""> Instagram</a></li>
+        </ul>
+    </div>
+    <div class="footer-section">
+        <h4>Blogs</h4>
+        <ul>
+            <li><a href="#">Latest Posts</a></li>
+            <li><a href="#">Popular Posts</a></li>
+            <li><a href="#">Archived Posts</a></li>
+        </ul>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    // Get references to the toggle icons
+    const sunIcon = document.getElementById('sun-icon');
+    const moonIcon = document.getElementById('moon-icon');
+
+    // Function to toggle dark mode
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        const header = document.querySelector('nav');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const authButtons = document.querySelectorAll('.btn-custom');
+
+        header.classList.toggle('dark-mode');
+
+        navLinks.forEach(link => {
+            link.classList.toggle('dark-mode');
+        });
+
+        authButtons.forEach(button => {
+            button.classList.toggle('dark-mode');
+        });
+
+        // Toggle icon visibility
+        sunIcon.style.display = sunIcon.style.display === 'none' ? 'block' : 'none';
+        moonIcon.style.display = moonIcon.style.display === 'none' ? 'block' : 'none';
+
+        // Save the current mode to localStorage
+        const currentMode = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+        localStorage.setItem('mode', currentMode);
+    }
+
+    // Event listeners for the icons
+    sunIcon.addEventListener('click', toggleDarkMode);
+    moonIcon.addEventListener('click', toggleDarkMode);
+
+    // Retain dark mode setting on page reload
+    document.addEventListener('DOMContentLoaded', () => {
+        const savedMode = localStorage.getItem('mode');
+        if (savedMode === 'dark') {
+            document.body.classList.add('dark-mode');
+            const header = document.querySelector('nav');
+            const navLinks = document.querySelectorAll('.nav-link');
+            const authButtons = document.querySelectorAll('.btn-custom');
+
+            header.classList.add('dark-mode');
+
+            navLinks.forEach(link => {
+                link.classList.add('dark-mode');
+            });
+
+            authButtons.forEach(button => {
+                button.classList.add('dark-mode');
+            });
+
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'block';
+        }
+    });
+
+
+    // Get the modal
+const modal = document.getElementById('loginSignupModal');
+
+// Get the <span> element that closes the modal
+const closeBtn = document.querySelector('.close');
+
+// Function to display the modal
+function displayModal() {
+  modal.style.display = 'block';
+}
+
+// Function to close the modal when clicking on the close button
+closeBtn.addEventListener('click', () => {
+  modal.style.display = 'none';
+});
+
+// Display the modal when the page is loaded
+window.addEventListener('load', displayModal);
+</script>
+
+
+</body>
+</html>

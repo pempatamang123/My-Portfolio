@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Profile Picture</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #0575E6, #00F260);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            perspective: 1000px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 2em;
+            border-radius: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            animation: fadeIn 1s ease-in-out, float 5s infinite alternate;
+            max-width: 400px;
+            width: 90%;
+            transform-style: preserve-3d;
+            transform: rotateX(20deg);
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 1em;
+            font-size: 2em;
+        }
+
+        input[type="file"] {
+            display: block;
+            margin: 1em auto;
+            padding: 0.5em;
+            border: 2px dashed #888;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background 0.3s, border-color 0.3s;
+        }
+
+        input[type="file"]:hover {
+            background: #f6f6f6;
+            border-color: #57B894;
+        }
+
+        button {
+            background: linear-gradient(135deg, #fda085, #f6d365);
+            border: none;
+            color: white;
+            padding: 0.75em 2em;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 1em;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transform: translateZ(10px);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            animation: floatBtn 5s infinite alternate;
+        }
+
+        button:hover {
+            transform: translateZ(15px);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            pointer-events: none;
+            animation: ripple 0.6s linear;
+            border-radius: 50%;
+            transform: scale(0);
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(0, 10px);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes floatBtn {
+            0% {
+                transform: translateZ(10px);
+            }
+            100% {
+                transform: translateZ(15px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload Profile Picture</h1>
+        <form id="uploadForm" action="profile.php" method="post" enctype="multipart/form-data">
+            <input type="file" name="profile_picture" accept="image/jpg, image/png" required>
+            <button type="submit" name="upload">Upload</button>
+        </form>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#uploadForm').submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData(this);
+
+                $.ajax({
+                    url: 'profile.php',
+                    type: 'POST',
+                    data: formData,
+                    success: function(response) {
+                        // After successful upload, redirect to dashboard.html
+                        window.location.href = 'dashboard.html';
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    },
+                    cache: false,
+                    contentType: false,
+                    processData: false
+                });
+            });
+        });
+    </script>
+</body>
+</html>
